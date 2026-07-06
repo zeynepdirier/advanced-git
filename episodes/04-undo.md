@@ -226,6 +226,82 @@ To squash multiple commits, look into `git rebase -i`.
 
 3. Oh, you forgot to butter. Add it to `pancake.md` and amend the existing commit without changing the commit message.
 
+:::::::::::::::  solution
+
+**Step 1:**
+
+```bash
+echo "flour" > pancake.md
+git add pancake.md
+git commit -m "Add flour"
+
+echo "milk" >> pancake.md
+git add pancake.md
+git commit -m "Add milk"
+
+echo "egg" >> pancake.md
+git add pancake.md
+git commit -m "Add eg"
+
+git log --oneline
+```
+```output
+<hash> (HEAD -> main) Add eg
+<hash> Add milk
+<hash> Add flour
+```
+
+```bash
+git commit --amend -m "Add egg"
+
+git log --oneline
+```
+```output
+<hash> (HEAD -> main) Add egg
+<hash> Add milk
+<hash> Add flour
+```
+
+**Step 2:**
+
+```bash
+git rebase -i HEAD~3
+```
+
+In the editor, change `pick` to `s` for the last two commits:
+
+```bash
+pick <hash> Add flour
+s <hash> Add milk
+s <hash> Add egg
+```
+
+Save and exit. In the next editor, write a single commit message:
+`Add ingredients to pancake recipe`
+
+```bash
+git log --oneline
+```
+```output
+<hash> (HEAD -> main) Add ingredients to pancake recipe
+```
+
+**Step 3:**
+
+```bash
+echo "butter" >> pancake.md
+git add pancake.md
+git commit --amend --no-edit
+
+git log --oneline
+```
+```output
+<hash> (HEAD -> main) Add ingredients to pancake recipe
+```
+:::::::::::::::::::::::::
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Exercise: Undoing Changes
 
