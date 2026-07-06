@@ -199,6 +199,34 @@ git checkout hotfix
 https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
 Also OMG: http://blog.kfish.org/2010/04/git-lola.html
 
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Squashing Commits and Amending
+
+You are working on a pancake recipe and adding ingredients one by one, each as a separate commit.
+You can track your history with `git log --oneline` at each step.
+
+1. Create `pancake.md` and add the following ingredients as separate commits:
+   - flour -> commit message: `Add flour`
+   - milk -> commit message: `Add milk`
+   - egg -> commit message: `Add eg` (this typo is intentional)
+   - Fix the typo in the commit message before moving on.
+
+::: hint
+
+To correct only the commit message without touching the files, check `git commit --amend --help`.
+:::
+
+2. Squash all three commits into one.
+
+::: hint
+To squash multiple commits, look into `git rebase -i`.
+:::
+
+3. Oh, you forgot to butter. Add it to `pancake.md` and amend the existing commit without changing the commit message.
+
+
 ## Exercise: Undoing Changes
 
 :::::::::::::::::::::::::::::::::::::::  challenge
